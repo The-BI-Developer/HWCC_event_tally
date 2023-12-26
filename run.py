@@ -29,9 +29,10 @@ def send_data():
     #did we actually forget the insert statement syntax :lol
     sql = "INSERT INTO hwcc_entrants (total_entrants) VALUES (%s)" #note entrant_count is taken from above var
     # Execute SQL statement
-    cursor = db.cursor()
-    cursor.execute(sql, (entries,)) #adding comma to introduce a tuple?
-    db.commit()
+    with db.cursor() as cursor:
+        cursor = db.cursor()
+        cursor.execute(sql, (entries,)) #adding comma to introduce a tuple?
+        db.commit()
     
     
     # Close connections

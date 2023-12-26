@@ -8,16 +8,13 @@
     <p>Inserts record to database for tallying number of entrants every week</p>
 
     <!-- form action -->
-
-    <form action="process_data" method="POST" onsubmit="return validateInteger()">
+    <!-- <form action="process_data" method="POST" onsubmit="return validateInteger()"> -->
+    <form onsubmit="return validateInteger()">
         <button type="submit">Insert record</button>
         
         <!-- the name attribute is passed onto jinja within send_data function -->
         <input name="input_entries">
-
     </form>
-
-    
 
     <!-- This is my database table -->
     <table>
@@ -37,11 +34,8 @@
                 </tr>
             {% endfor %}
         </tbody>
-       </table> 
+    </table> 
     
-    <script type="text/javascript" src="./static/js/validMe.js"></script>
-
-    </body>
-
-
+    <script type="text/javascript" src="/home/abdul/Documents/HWCC_event_tally/static/js/validMe.js"></script>
+</body>
 </html>

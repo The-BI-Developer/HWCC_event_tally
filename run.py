@@ -47,17 +47,21 @@ def send_data():
 def delete_records():
     record_ids = request.form.getlist('record_ids')
     if record_ids:
-        # Delete records
-        sql_delete = "DELETE FROM hwcc_entrants WHERE id IN (%s)"
-        ids_placeholder = ', '.join(['%s'] * len(record_ids))
+        for record_id in record_ids:
+            # Check if the checkbox is selected
+            checkbox_value = request.form.get("record_ids_{row.id}")
+          
+            # Delete the record
+            with db.cursor() as cursor_delete:
+                sql_delete = "DELETE FROM hwcc_entrants WHERE record_id = %s"
+                for record_id in record_ids:
+                    cursor_delete.execute(sql_delete, (record_id,))
+                db.commit()
 
-        with db.cursor() as cursor_delete:
-            cursor_delete.execute(sql_delete % ids_placeholder, tuple(record_ids))
-            db.commit()
-
-    return redirect("/")  # Redirect after deletion
+    return redirect("/")
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
+
 
 

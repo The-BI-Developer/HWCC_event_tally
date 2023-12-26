@@ -23,19 +23,21 @@
         <table>
             <thead>
                 <tr>
-                    {% for column in col_names %}
+                    {% for column in col_names[:3] %}
                         <th>{{ column }}</th>
                     {% endfor %}
+
+                    <!-- deletion header -->
                     <th>Delete</th>
                 </tr>
             </thead>
             <tbody>
                 {% for row in data %}
                     <tr>
-                        {% for item in row %}
+                        {% for item in row[:3] %}
                             <td>{{ item }}</td>
                         {% endfor %}
-                        <td><input type="checkbox" name="record_ids" value="{{ row.id }}"></td>
+                        <td><input type="checkbox" name="record_ids[]" value="{{ row.record_id }}" id="checkbox_{{ row.record_id }}"></td>
                     </tr>
                 {% endfor %}
             </tbody>

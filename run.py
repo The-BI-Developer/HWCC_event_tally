@@ -1,5 +1,6 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect
 import mysql.connector  # Import MySQL connector
+
 
 app = Flask(__name__)
 
@@ -18,5 +19,24 @@ def display_table():
     results = cursor.fetchall()  # Fetch all rows
     return render_template("index.html", data=results)  # Pass data to template
 
+@app.route("/process_data",methods=["POST"])
+def send_data():
+    entrant_count = int(request.form["total_entrants"]) #linked to html name attribute
+    sql = "INSERT INTO hwcc_entrants (entrant_count) VALUES (%s)" #note entrant_count is taken from above var
+    # Execute SQL statement
+    cursor = db.cursor()
+    cursor.execute(sql, (entrant_count))
+    db.commit()
+    
+    print(entrant_count)
+    
+    # Close connections
+    cursor.close()
+    db.close()
+
+    return redirect("/") #redirection after submission
+
 if __name__ == "__main__":
     app.run(debug=True)
+
+

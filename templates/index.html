@@ -9,9 +9,12 @@
 
     <!-- form action -->
 
-    <form action="process_data" method="POST" onsubmit="return validateEntry">
+    <form action="process_data" method="POST" onsubmit="return validateInteger">
         <button type="submit">Insert record</button>
-        <input type="number" inputmode="numeric">
+        
+        <!-- the name attribute is passed onto jinja within send_data function -->
+        <input name="total_entrants">
+
     </form>
 
     <script

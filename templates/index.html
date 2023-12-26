@@ -8,9 +8,8 @@
     <p>Inserts record to database for tallying number of entrants every week</p>
 
     <!-- form action -->
-    <!-- <form action="process_data" method="POST" onsubmit="return validateInteger()"> -->
-    <form onsubmit="return validateInteger()">
-        <button type="submit">Insert record</button>
+    <form action="process_data" method="POST">
+        <button type="submit" onclick="return validateInteger()">Insert record</button>
         
         <!-- the name attribute is passed onto jinja within send_data function -->
         <input name="input_entries">
@@ -36,6 +35,6 @@
         </tbody>
     </table> 
     
-    <script type="text/javascript" src="/home/abdul/Documents/HWCC_event_tally/static/js/validMe.js"></script>
+    <script type="text/javascript" src="{{url_for('static',filename='js/validMe.js'}}"></script>
 </body>
 </html>

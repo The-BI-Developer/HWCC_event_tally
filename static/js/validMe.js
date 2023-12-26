@@ -1,16 +1,15 @@
 function validateInteger() {
     const inputField = document.querySelector("input");
     const inputValue = inputField.value;
+    const form = document.querySelector("form");
 
-    if (!/^[0-9]+$/.test(inputValue)) {
-        alert("Please enter a valid integer.");
+    if (!/^[0-9]+$/.test(inputValue)) { //forward slashes bound regex whilst ! means logical not
+        alert("Please enter a valid integer!");
+        inputField.reset();
         return false; // Prevent form submission
     }
 
-    alert("Form submitted")
-
-    const form = document.querySelector("form");
-    form.reset();
+    alert("Sucess!Form submitted")
 
     return true; // Allow form submission
 }

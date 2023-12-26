@@ -2,44 +2,44 @@
 <html>
 <head>
     <title>Enter Data</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 
 <body>
     <p>Inserts record to database for tallying number of entrants every week</p>
 
-    <!-- form action -->
-
+    <!-- Form for inserting records -->
     <form action="process_data" method="POST" onsubmit="return validateInteger()">
         <button type="submit">Insert record</button>
-        
-        <!-- the name attribute is passed onto jinja within send_data function -->
+        <!-- The name attribute is passed onto Jinja within send_data function -->
         <input name="input_entries" type="number">
-
     </form>
 
-    
+    <!-- Form for deleting records -->
+    <form action="delete_records" method="POST">
+        <button type="submit">Delete selected records</button>
 
-    <!-- This is my database table -->
-    <table>
-        <thead>
-            <tr>
-                {% for column in col_names %}
-                    <th>{{ column }}</th>
-                {% endfor %}
-            </tr>
-        </thead>
-        <tbody>
-            {% for row in data %}
+        <!-- This is my database table -->
+        <table>
+            <thead>
                 <tr>
-                    {% for item in row %}
-                        <td>{{ item }}</td>
+                    {% for column in col_names %}
+                        <th>{{ column }}</th>
                     {% endfor %}
+                    <th>Delete</th>
                 </tr>
-            {% endfor %}
-        </tbody>
-       </table> 
-    
-    </body>
-
-
+            </thead>
+            <tbody>
+                {% for row in data %}
+                    <tr>
+                        {% for item in row %}
+                            <td>{{ item }}</td>
+                        {% endfor %}
+                        <td><input type="checkbox" name="record_ids" value="{{ row.id }}"></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </form>
+</body>
 </html>

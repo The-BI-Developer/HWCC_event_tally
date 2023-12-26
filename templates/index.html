@@ -9,7 +9,7 @@
 
     <!-- form action -->
 
-    <form action="process_data" method="POST">
+    <form action="process_data" method="POST" onsubmit="return validateInteger()">
         <button type="submit">Insert record</button>
         
         <!-- the name attribute is passed onto jinja within send_data function -->
@@ -17,13 +17,13 @@
 
     </form>
 
-    <script type="text/javascript" src="./static/js/validMe.js"></script>
+    
 
     <!-- This is my database table -->
     <table>
         <thead>
             <tr>
-                {% for column in data[0]._fields %}
+                {% for column in col_names %}
                     <th>{{ column }}</th>
                 {% endfor %}
             </tr>
@@ -37,8 +37,11 @@
                 </tr>
             {% endfor %}
         </tbody>
+       </table> 
     
-</body>
+    <script type="text/javascript" src="./static/js/validMe.js"></script>
+
+    </body>
 
 
 </html>

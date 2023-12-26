@@ -6,6 +6,7 @@ app = Flask(__name__)
 
 # Database connection configuration
 db = mysql.connector.connect(
+    #credentials
     host="localhost",
     user="itookurjob",
     password="dalit",
@@ -17,8 +18,9 @@ def display_table():
     cursor = db.cursor()
     cursor.execute("SELECT * FROM hwcc_entrants")
     results = cursor.fetchall()  # Fetch all rows
-    print(request.form)
-    return render_template("index.html", data=results)  # Pass data to template
+    col_names = [desc[0] for desc in cursor.description] 
+
+    return render_template("index.html", data=results,col_names=col_names)  # Pass data to template
 
 @app.route("/process_data",methods=["POST"])
 def send_data():
@@ -39,6 +41,6 @@ def send_data():
     return redirect("/") #redirection after submission
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
 
 

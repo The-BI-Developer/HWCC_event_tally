@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Enter Data</title>
+</head>
+
+<body>
+    <p>Inserts record to database for tallying number of entrants every week</p>
+
+    <!-- form action -->
+
+    <form action="process_data" method="POST">
+        <button type="submit">Insert record</button>
+    </form>
+
+
+    <!-- This is my database table -->
+    <table>
+        <thead>
+            <tr>
+                {% for column in data[0]._fields %}
+                    <th>{{ column }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in data %}
+                <tr>
+                    {% for item in row %}
+                        <td>{{ item }}</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    
+</body>
+
+
+</html>

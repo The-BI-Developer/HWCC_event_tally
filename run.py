@@ -21,14 +21,13 @@ def display_table():
 
 @app.route("/process_data",methods=["POST"])
 def send_data():
-    entrant_count = int(request.form["total_entrants"]) #linked to html name attribute
-    sql = "INSERT INTO hwcc_entrants (entrant_count) VALUES (%s)" #note entrant_count is taken from above var
+    entries = int(request.form["total_entrants"]) #linked to html name attribute
+    sql = "INSERT INTO hwcc_entrants (entries) VALUES (%s)" #note entrant_count is taken from above var
     # Execute SQL statement
     cursor = db.cursor()
-    cursor.execute(sql, (entrant_count))
+    cursor.execute(sql, (entries,)) #adding comma to introduce a tuple?
     db.commit()
     
-    print(entrant_count)
     
     # Close connections
     cursor.close()

@@ -5,5 +5,7 @@ function validateInteger() {
     if (!/^[0-9]+$/.test(inputValue)) {
         alert("Please enter a valid integer.");
         return false; // Prevent form submission
+
     }
+    print(request.form)
     return true; // Allow form submission

@@ -17,6 +17,7 @@ def display_table():
     cursor = db.cursor()
     cursor.execute("SELECT * FROM hwcc_entrants")
     results = cursor.fetchall()  # Fetch all rows
+    print(request.form)
     return render_template("index.html", data=results)  # Pass data to template
 
 @app.route("/process_data",methods=["POST"])

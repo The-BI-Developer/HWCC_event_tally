@@ -14,11 +14,6 @@
         <!-- The name attribute is passed onto Jinja within send_data function -->
         <input name="input_entries" type="number">
     </form>
-
-    <!-- Form for deleting records -->
-    <form action="delete_records" method="POST">
-        <button type="submit">Delete selected records</button>
-
         <!-- This is my database table -->
         <table>
             <thead>
@@ -26,7 +21,6 @@
                     {% for column in col_names %}
                         <th>{{ column }}</th>
                     {% endfor %}
-                    <th>Delete</th>
                 </tr>
             </thead>
             <tbody>
@@ -35,11 +29,10 @@
                         {% for item in row %}
                             <td>{{ item }}</td>
                         {% endfor %}
-                        <td><input type="checkbox" name="record_ids" value="{{ row.id }}"></td>
                     </tr>
                 {% endfor %}
             </tbody>
         </table>
-    </form>
+
 </body>
 </html>

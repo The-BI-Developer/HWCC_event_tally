@@ -43,19 +43,6 @@ def send_data():
 
     return redirect("/") #redirection after submission
 
-@app.route("/delete_records", methods=["POST"])
-def delete_records():
-    record_ids = request.form.getlist('record_ids')
-    if record_ids:
-        # Delete records
-        sql_delete = "DELETE FROM hwcc_entrants WHERE id IN (%s)"
-        ids_placeholder = ', '.join(['%s'] * len(record_ids))
-
-        with db.cursor() as cursor_delete:
-            cursor_delete.execute(sql_delete % ids_placeholder, tuple(record_ids))
-            db.commit()
-
-    return redirect("/")  # Redirect after deletion
 
 if __name__ == "__main__":
     app.run()

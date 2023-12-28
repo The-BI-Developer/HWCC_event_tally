@@ -8,7 +8,7 @@ app = Flask(__name__)
 db = mysql.connector.connect(
     #credentials
     host="localhost",
-    user="itookurjob",
+    user="itookurjob@10.0.0",
     password="dalit",
     database="hwcc"
 )
@@ -43,6 +43,7 @@ def send_data():
 
     return redirect("/") #redirection after submission
 
+<<<<<<< Updated upstream
 @app.route("/delete_records", methods=["POST"])
 def delete_records():
     record_ids = request.form.getlist('record_ids')
@@ -59,6 +60,31 @@ def delete_records():
                 db.commit()
 
     return redirect("/")
+=======
+@app.route('/delete_record', methods=['POST'])
+def delete_record():
+    if request.form.get('delete') == 'True':
+        record_id = request.form.get('record_id')
+
+        # Create a cursor
+        cursor = db.cursor()
+
+        # SQL statement to delete the record
+        sql = "DELETE FROM table_name WHERE record_id = %s"
+
+        # Execute the SQL statement
+        cursor.execute(sql, (record_id,))
+
+        # Commit the changes
+        db.commit()
+
+        # Close the cursor
+        cursor.close()
+
+    return redirect("/")
+
+
+>>>>>>> Stashed changes
 
 if __name__ == "__main__":
     app.run(debug=True)
